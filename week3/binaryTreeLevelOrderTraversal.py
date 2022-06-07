@@ -24,7 +24,7 @@ class Solution:
                     level.append(node.val)
                     q.append(node.left)
                     q.append(node.right)
-
-            res.append(level)
+            if level:
+                res.append(level)
 
         return res
