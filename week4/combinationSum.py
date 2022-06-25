@@ -1,4 +1,4 @@
-from unittest import result
+from typing import *
 
 
 class Solution:
