@@ -1,29 +1,22 @@
-from cmath import e
-
-
 def longest_substring_with_k_distinct(str1, k):
 
-    longestSub = 0
-    l = 0
-    seenChars = {}
+    longestLen = 0
+    frequency = {}
+    left = 0
 
-    for i in range(len(str1)):
+    for right in range(len(str1)):
 
-        if str1[i] not in seenChars:
-            seenChars[str1[i]] = 1
-        else:
-            seenChars[str1[i]] += 1
+        frequency[str1[right]] = 1 + frequency.get(str1[right], 0)
 
-        while len(seenChars) > k:
+        while len(frequency) > k:
+            frequency[str1[left]] -= 1
+            if frequency[str1[left]] == 0:
+                del frequency[str1[left]]
+            left += 1
 
-            seenChars[str1[l]] -= 1
-            if seenChars[str1[l]] == 0:
-                del seenChars[str1[l]]
-            l += 1
+        longestLen = max(longestLen, right - left + 1)
 
-        longestSub = max(longestSub, i - l + 1)
-
-    return longestSub
+    return longestLen
 
 
 def main():

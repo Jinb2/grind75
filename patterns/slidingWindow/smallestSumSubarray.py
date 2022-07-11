@@ -1,20 +1,26 @@
+import math
+
+
 def smallest_subarray_sum(s, arr):
 
-    smallestSum, currSum = float("inf"), 0
-    start = 0
+    windowSum = 0
+    left = 0
 
-    for end in range(len(arr)):
+    smallestLen = math.inf
 
-        currSum += arr[end]
+    for right in range(len(arr)):
 
-        if currSum > s:
-            currSum -= arr[start]
-            start += 1
+        windowSum += arr[right]
 
-        if currSum == s:
-            smallestSum = min(smallestSum, end - start + 1)
+        while windowSum >= s:
+            smallestLen = min(smallestLen, right - left + 1)
+            windowSum -= arr[left]
+            left += 1
 
-    return smallestSum
+    if smallestLen == math.inf:
+        return 0
+
+    return smallestLen
 
 
 def main():
