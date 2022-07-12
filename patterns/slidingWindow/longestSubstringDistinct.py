@@ -1,37 +1,44 @@
-def longest_substring_with_k_distinct(str1, k):
+"""
+Problem Statement 
+Given a string, find the length of the longest substring which has no repeating characters.
+Example 1:
+Input: String="aabccbb"
+Output: 3
+Explanation: The longest substring without any repeating characters is "abc".
+Example 2:
+Input: String="abbbb"
+Output: 2
+Explanation: The longest substring without any repeating characters is "ab".
+Example 3:
+Input: String="abccde"
+Output: 3
+Explanation: Longest substrings without any repeating characters are "abc" & "cde".
+"""
 
-    longestLen = 0
-    frequency = {}
-    left = 0
 
-    for right in range(len(str1)):
+def non_repeat_substring(s):
 
-        frequency[str1[right]] = 1 + frequency.get(str1[right], 0)
+    maxLength, left, = (
+        0,
+        0,
+    )
 
-        while len(frequency) > k:
-            frequency[str1[left]] -= 1
-            if frequency[str1[left]] == 0:
-                del frequency[str1[left]]
+    freq = {}
+
+    for right in range(len(s)):
+
+        freq[s[right]] = 1 + freq.get(s[right], 0)
+
+        while freq[s[right]] > 1:
+
+            freq[s[left]] -= 1
             left += 1
 
-        longestLen = max(longestLen, right - left + 1)
+        maxLength = max(maxLength, right - left + 1)
 
-    return longestLen
-
-
-def main():
-    print(
-        "Length of the longest substr1ing: "
-        + str(longest_substring_with_k_distinct("araaci", 2))
-    )
-    print(
-        "Length of the longest substring: "
-        + str(longest_substring_with_k_distinct("araaci", 1))
-    )
-    print(
-        "Length of the longest substring: "
-        + str(longest_substring_with_k_distinct("cbbebi", 3))
-    )
+    return maxLength
 
 
-main()
+print(non_repeat_substring("aabccbb"))
+print(non_repeat_substring("abbbb"))
+print(non_repeat_substring("abccde"))
