@@ -25,3 +25,5 @@ class Solution:
 
 
 print(Solution().backspaceCompare("y#fo##f", "y#f#o##f"))
+
+https://leetcode.com/problems/backspace-string-compare/discuss/585027/Python-O(N)-Time-O(1)-Space-Solution-or-Explained
