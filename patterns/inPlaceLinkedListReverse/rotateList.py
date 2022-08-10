@@ -6,39 +6,69 @@
 class Solution:
     def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
 
-        if not head or k == 0:
+        # if not head or k == 0:
+        #     return head
+
+        # # first get the length of the linked list
+        # ptr = head
+        # length = 0
+
+        # while ptr:
+
+        #     length += 1
+        #     ptr = ptr.next
+
+        # if k % length or k % length == 0:
+        #     return head
+        # # get the place to where we need to separate the linked list
+
+        # firstHalf = head
+
+        # n = length - (k % length) if k > length else length - k
+
+        # for _ in range(n - 1):
+        #     firstHalf = firstHalf.next
+
+        # # split this linked list
+        # secondHalf = firstHalf.next
+        # firstHalf.next = None
+
+        # # get to end of list from second half
+        # end = secondHalf
+
+        # while end and end.next:
+        #     end = end.next
+
+        # end.next = head
+
+        # return secondHalf
+
+        # cleaner code
+
+        if not head:
             return head
 
-        # first get the length of the linked list
-        ptr = head
-        length = 0
+        length, tail = 1, head
 
-        while ptr:
+        while tail.next:
 
             length += 1
-            ptr = ptr.next
+            tail = tail.next
 
-        if k % length or k % length == 0:
+        k = k % length
+
+        if k == 0:
             return head
-        # get the place to where we need to separate the linked list
 
-        firstHalf = head
+        curr = head
 
-        n = length - (k % length) if k > length else length - k
+        for _ in range(length - k - 1):
 
-        for _ in range(n - 1):
-            firstHalf = firstHalf.next
+            curr = curr.next
 
-        # split this linked list
-        secondHalf = firstHalf.next
-        firstHalf.next = None
+        newHead = curr.next
+        curr.next = None
 
-        # get to end of list from second half
-        end = secondHalf
+        tail.next = head
 
-        while end and end.next:
-            end = end.next
-
-        end.next = head
-
-        return secondHalf
+        return newHead
