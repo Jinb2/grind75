@@ -7,6 +7,14 @@
 class Solution:
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
 
+        # we can treat a null node as -1 and the reason is as follows
+        # the problem defines diameter to be the number of edges beteween two nodes
+        # so if we have a leaf node then it will have two out going edges to two nuill nodes
+        # so which is why to get the diamaeter we can take the height of the left and right and add 2
+        # this will cancel out if they are both null
+        # so diameter is height of left and right + 2
+        # and then height of a node is left and right + 1 taking the max
+
         if not root:
             return 0
 

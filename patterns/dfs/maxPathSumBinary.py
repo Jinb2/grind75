@@ -6,6 +6,13 @@
 #         self.right = right
 
 
+# so we have two cases in this problem
+# we can see that we can either split at a given node or we dont
+# so if we dont we would just take the max val of the left and right child
+# if we do split then we would take the root val add it to the max of the left and max of right
+# and we are always returning the value without splitting
+
+
 class Solution:
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
 

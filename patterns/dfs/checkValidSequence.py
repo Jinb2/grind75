@@ -9,6 +9,10 @@ class Node:
         self.right = None
 
 
+# what did i learn
+#
+
+
 class Solution:
     def isValidSequence(self, root, arr):
 
@@ -16,10 +20,11 @@ class Solution:
             return False
 
         def dfs(root, i):
-
+            # if it reach the end of the list then we can return since that is possible height is > than len of sequence
             if not root or i == len(arr):
                 return False
 
+            # when we reach a leaf node then we can check for our condition which is if it matches the sequence aka i == last element of the array
             if not root.left or not root.right:
                 if root.val == arr[i] and i == len(arr) - 1:
                     return True

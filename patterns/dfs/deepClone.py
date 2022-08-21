@@ -7,6 +7,16 @@ class Node:
 """
 
 
+# how did i do this problem
+# I did it using dfs because we need to go to each "old" node and then creating a copy
+# so we store this mapping in a hashmap
+# so essentially we have it that we can check if we created a copy
+# so how our algo works is that
+# we have the base case where it is already created in that case we can return the copy node
+# so then we iterate through the neighbors and call dfs
+# appending it once we reach a base case
+
+
 class Solution:
     def cloneGraph(self, node: "Node") -> "Node":
 
